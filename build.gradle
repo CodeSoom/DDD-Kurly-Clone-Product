@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'application'
+	id 'jacoco'
 }
 
 group = 'com.ddd-kurly-clone'
@@ -24,4 +25,34 @@ test {
 
 application {
 	mainClass = 'com.dddkurlyclone.product.App'
+}
+
+jacoco {
+	toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+	dependsOn test
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			element = "CLASS"
+
+			limit {
+				counter = 'LINE'
+				minimum = 1
+			}
+
+			limit {
+				counter = 'BRANCH'
+				minimum = 1
+			}
+
+			excludes = [
+					"com.dddkurlyclone.product.App",
+			]
+		}
+	}
 }
