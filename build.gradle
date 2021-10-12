@@ -1,8 +1,12 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.5'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'application'
+
+	// Spring
+	id 'org.springframework.boot' version '2.5.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+
+	// workflow
 	id 'jacoco'
 }
 
@@ -15,11 +19,26 @@ repositories {
 }
 
 dependencies {
+	// Spring Web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// AssertJ
+	testImplementation 'org.assertj:assertj-core:3.18.1'
+
+	// Spring Data JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+	// Spring Developer Tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
-test {
+test() {
 	useJUnitPlatform()
 }
 
