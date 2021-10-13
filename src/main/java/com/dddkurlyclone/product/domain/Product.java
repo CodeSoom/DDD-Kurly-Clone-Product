@@ -10,14 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-@Builder
 @Entity
-@Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 public class Product {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -26,6 +22,13 @@ public class Product {
 
     private Integer price;
 
+    public Product(Long id, String name, Integer price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 
+    public Product() {
 
+    }
 }
