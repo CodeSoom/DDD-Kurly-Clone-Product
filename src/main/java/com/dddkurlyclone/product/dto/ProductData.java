@@ -3,17 +3,10 @@ package com.dddkurlyclone.product.dto;
 import com.github.dozermapper.core.Mapping;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 
 @Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProductData {
     private Long id;
 
@@ -24,5 +17,13 @@ public class ProductData {
     @NotBlank
     @Mapping("price")
     private Integer price;
+
+    public  ProductData(){}
+
+    public ProductData(Long id, String name, Integer price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 
 }
