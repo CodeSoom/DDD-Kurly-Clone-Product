@@ -15,8 +15,33 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// Spring Web
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+	// AssertJ
+	testImplementation 'org.assertj:assertj-core:3.21.0'
+
+	// Spring Developer Tools
+	developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.5'
+
+	// Spring Data Core
+	implementation group: 'org.springframework.data', name: 'spring-data-commons', version: '2.5.4'
+
+	// Spring Data JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.5'
+	runtimeOnly 'com.h2database:h2:1.4.200'
+
+	// DozerMapper
+	implementation 'com.github.dozermapper:dozer-core:6.5.2'
+
+	// Spring Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 }
 
 test {
