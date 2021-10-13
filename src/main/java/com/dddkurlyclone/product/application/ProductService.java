@@ -17,12 +17,10 @@ public class ProductService {
     private final Mapper mapper;
     private final ProductRepository productRepository;
 
-
     public ProductService(Mapper mapper, ProductRepository productRepository) {
         this.mapper = mapper;
         this.productRepository = productRepository;
     }
-
 
     public List<Product> getProducts() {
         return productRepository.findAll();
@@ -38,7 +36,8 @@ public class ProductService {
     }
 
     private Product findProduct(Long id) {
-        return productRepository.findById(id)
+        return productRepository
+                .findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
