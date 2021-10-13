@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     /**
-     * 새로운 상품을 생성합니다.
+     * 새로운 상품을 생성하여 리턴합니다.
      * @param productdata 생성하려는 상품의 정보
      * @return 새로운 상품
      */
