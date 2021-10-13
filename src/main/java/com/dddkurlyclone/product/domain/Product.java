@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+public class Product extends BaseTimeEntity {
   @Id @GeneratedValue
   private Long id;
 
