@@ -1,10 +1,15 @@
 package com.dddkurlyclone.product.dto;
 
 import com.github.dozermapper.core.Mapping;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotBlank;
-import lombok.*;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductData {
   private Long id;
 
@@ -16,8 +21,7 @@ public class ProductData {
   @Mapping("price")
   private Integer price;
 
-  public ProductData() {}
-
+  @Builder
   public ProductData(Long id, String name, Integer price) {
     this.id = id;
     this.name = name;
