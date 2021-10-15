@@ -1,18 +1,5 @@
 package com.dddkurlyclone.product.controllers;
 
-import com.dddkurlyclone.product.application.ProductService;
-import com.dddkurlyclone.product.domain.Product;
-import com.dddkurlyclone.product.dto.ProductData;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.List;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -20,6 +7,20 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.dddkurlyclone.product.application.ProductService;
+import com.dddkurlyclone.product.domain.Product;
+import com.dddkurlyclone.product.dto.ProductData;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {
@@ -65,4 +66,5 @@ public class ProductControllerTest {
                         .content("{\"name\":\"샤인마토\",\"price\":\"7000\"}"))
                 .andExpect(status().isCreated());
     }
+
 }

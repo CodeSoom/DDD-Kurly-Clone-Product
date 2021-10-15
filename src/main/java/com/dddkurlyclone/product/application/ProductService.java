@@ -5,10 +5,11 @@ import com.dddkurlyclone.product.dto.ProductData;
 import com.dddkurlyclone.product.errors.ProductNotFoundException;
 import com.dddkurlyclone.product.infra.ProductRepository;
 import com.github.dozermapper.core.Mapper;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
@@ -35,8 +36,6 @@ public class ProductService {
     }
 
     private Product findProduct(Long id) {
-        return productRepository
-                .findById(id)
-                .orElseThrow(() -> new ProductNotFoundException(id));
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
     }
 }
