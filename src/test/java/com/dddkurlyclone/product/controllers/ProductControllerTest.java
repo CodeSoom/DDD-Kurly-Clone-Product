@@ -30,34 +30,39 @@ public class ProductControllerTest {
     private ProductService productService;
 
     @BeforeEach
-    void 테스트를_준비_합니다() {
-        Product product = Product.builder().id(1L).name("샤인마토").price(7000).build();
+    void 상품_서비스를_호출할_테스트케이스를_준비합니다() {
+        Product product = Product.builder()
+                .id(1L)
+                .name("샤인마토")
+                .price(7000)
+                .build();
 
         given(productService.getProducts()).willReturn(List.of(product));
-
         given(productService.getProduct(1L)).willReturn(product);
         given(productService.createProducts(any(ProductData.class))).willReturn(product);
     }
 
     @Test
-    void 상품_목록을_반환하는가() throws Exception {
-        mvc.perform(get("/products")).andExpect(status().isOk());
+    void 상품_목록_요청에_응답하는가() throws Exception {
+        mvc.perform(
+                get("/products"))
+                .andExpect(status().isOk());
     }
 
     @Test
-    void 상품_상세_정보를_반환하는가() throws Exception {
-        mvc.perform(get("/products/1").accept(MediaType.APPLICATION_JSON_UTF8))
+    void 상품_상세_정보_요청에_응답하는가() throws Exception {
+        mvc.perform(
+                get("/products/1").accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("샤인마토")));
     }
 
     @Test
-    void 상품_데이터를_생성하는가() throws Exception {
+    void 상품_데이터_생성_요청에_응답하는가() throws Exception {
         mvc.perform(
-                        post("/products")
-                                .accept(MediaType.APPLICATION_JSON_UTF8)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("{\"name\":\"샤인마토\",\"price\":\"7000\"" + "}"))
+                post("/products").accept(MediaType.APPLICATION_JSON_UTF8)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"샤인마토\",\"price\":\"7000\"}"))
                 .andExpect(status().isCreated());
     }
 }
