@@ -34,14 +34,15 @@ public class ProductControllerTest {
     given(productService.getProduct(1L)).willReturn(product);
     given(productService.createProduct(any(ProductData.class))).willReturn(product);
     given(productService.updateProduct(eq(1L), any(ProductData.class)))
-            .will(invocation -> {
+        .will(
+            invocation -> {
               Long id = invocation.getArgument(0);
               ProductData productData = invocation.getArgument(1);
               return Product.builder()
-                      .id(id)
-                      .name(productData.getName())
-                      .price(productData.getPrice())
-                      .build();
+                  .id(id)
+                  .name(productData.getName())
+                  .price(productData.getPrice())
+                  .build();
             });
   }
 
@@ -69,17 +70,17 @@ public class ProductControllerTest {
 
   @Test
   void 상품_데이터_업데이트_요청에_응답하는가() throws Exception {
-    mvc.perform(patch("/products/1")
-            .accept(MediaType.APPLICATION_JSON_UTF8)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"name\":\"샤인토마토\",\"price\":8900}"))
-            .andExpect(status().isOk())
-            .andExpect(content().string(containsString("샤인토마토")));
+    mvc.perform(
+            patch("/products/1")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"샤인토마토\",\"price\":8900}"))
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("샤인토마토")));
   }
 
   @Test
   void 상품_데이터_삭제_요청에_응답하는가() throws Exception {
-    mvc.perform(delete("/products/1"))
-            .andExpect(status().isNoContent());
+    mvc.perform(delete("/products/1")).andExpect(status().isNoContent());
   }
 }
