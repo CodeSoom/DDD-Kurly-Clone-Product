@@ -17,4 +17,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
   @Override
   Product save(Product product);
+
+  @Override
+  void delete(Product product);
 }
