@@ -5,13 +5,7 @@ import com.dddkurlyclone.product.domain.Product;
 import com.dddkurlyclone.product.dto.ProductData;
 import java.util.List;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/products")
@@ -52,6 +46,28 @@ public class ProductController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public Product create(@RequestBody ProductData productdata) {
-    return productService.createProducts(productdata);
+    return productService.createProduct(productdata);
+  }
+
+  /**
+   * id가 일치하는 상품을 찾아, 주어진 상품의 데이터로 수정하고 상품을 리턴합니다.
+   *
+   * @param id 수정하려는 상품의 식별자
+   * @param productData 수정된 상품의 데이터
+   * @return 수정된 상품
+   */
+  @PatchMapping("{id}")
+  public Product patch(@PathVariable Long id, @RequestBody ProductData productData) {
+    return productService.updateProduct(id, productData);
+  }
+
+  /**
+   * id가 일치하는 상품을 찾아, 상품목록에서 삭제합니다.
+   * @param id 삭제하려는 상품의 식별자
+   */
+  @DeleteMapping("{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void delete(@PathVariable Long id) {
+    productService.deleteProduct(id);
   }
 }
