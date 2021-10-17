@@ -63,6 +63,7 @@ public class ProductController {
 
   /**
    * id가 일치하는 상품을 찾아, 상품목록에서 삭제합니다.
+   *
    * @param id 삭제하려는 상품의 식별자
    */
   @DeleteMapping("{id}")
