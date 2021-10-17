@@ -28,12 +28,25 @@ public class ProductService {
     return findProduct(id);
   }
 
-  public Product createProducts(ProductData productData) {
+  public Product createProduct(ProductData productData) {
     Product product = mapper.map(productData, Product.class);
     return productRepository.save(product);
   }
 
   private Product findProduct(Long id) {
     return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+  }
+
+  public Product updateProduct(Long id, ProductData productData) {
+    Product source = findProduct(id);
+
+    source.changeWith(mapper.map(productData, Product.class));
+
+    return source;
+  }
+
+  public void deleteProduct(Long id) {
+    Product product = findProduct(id);
+    productRepository.delete(product);
   }
 }
