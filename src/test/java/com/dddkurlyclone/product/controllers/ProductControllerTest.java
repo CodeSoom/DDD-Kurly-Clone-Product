@@ -2,9 +2,9 @@ package com.dddkurlyclone.product.controllers;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +32,18 @@ public class ProductControllerTest {
 
     given(productService.getProducts()).willReturn(List.of(product));
     given(productService.getProduct(1L)).willReturn(product);
-    given(productService.createProducts(any(ProductData.class))).willReturn(product);
+    given(productService.createProduct(any(ProductData.class))).willReturn(product);
+    given(productService.updateProduct(eq(1L), any(ProductData.class)))
+        .will(
+            invocation -> {
+              Long id = invocation.getArgument(0);
+              ProductData productData = invocation.getArgument(1);
+              return Product.builder()
+                  .id(id)
+                  .name(productData.getName())
+                  .price(productData.getPrice())
+                  .build();
+            });
   }
 
   @Test
@@ -55,5 +66,21 @@ public class ProductControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"샤인마토\",\"price\":\"7000\"}"))
         .andExpect(status().isCreated());
+  }
+
+  @Test
+  void 상품_데이터_업데이트_요청에_응답하는가() throws Exception {
+    mvc.perform(
+            patch("/products/1")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"샤인토마토\",\"price\":8900}"))
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("샤인토마토")));
+  }
+
+  @Test
+  void 상품_데이터_삭제_요청에_응답하는가() throws Exception {
+    mvc.perform(delete("/products/1")).andExpect(status().isNoContent());
   }
 }
