@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DozerMapperConfig {
-  @Bean
-  public Mapper dozerMapper() {
-    return DozerBeanMapperBuilder.buildDefault();
-  }
+    @Bean
+    public Mapper dozerMapper() {
+        return DozerBeanMapperBuilder.buildDefault();
+    }
 }
