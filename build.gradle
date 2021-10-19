@@ -18,7 +18,6 @@ dependencies {
 	// Spring Web
 	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
-
 	// Lombok
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
