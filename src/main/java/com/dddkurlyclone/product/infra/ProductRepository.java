@@ -2,6 +2,12 @@ package com.dddkurlyclone.product.infra;
 
 import com.dddkurlyclone.product.domain.Product;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+import java.util.Optional;
+
+>>>>>>> feature/spes
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -11,7 +11,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.dddkurlyclone.product.application.ProductService;
 import com.dddkurlyclone.product.domain.Product;
 import com.dddkurlyclone.product.dto.ProductData;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,11 @@ import java.util.List;
 
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {
-    @Autowired private MockMvc mvc;
+    @Autowired
+    private MockMvc mvc;
 
-    @MockBean private ProductService productService;
+    @MockBean
+    private ProductService productService;
 
     @BeforeEach
     void 상품_서비스를_호출할_테스트케이스를_준비합니다() {
