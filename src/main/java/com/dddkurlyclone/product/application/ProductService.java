@@ -6,11 +6,11 @@ import com.dddkurlyclone.product.errors.ProductNotFoundException;
 import com.dddkurlyclone.product.infra.ProductRepository;
 import com.github.dozermapper.core.Mapper;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
 
 @Service
 @Transactional

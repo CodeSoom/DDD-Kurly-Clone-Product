@@ -4,10 +4,11 @@ import com.dddkurlyclone.product.application.ProductService;
 import com.dddkurlyclone.product.domain.Product;
 import com.dddkurlyclone.product.dto.ProductData;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -54,7 +55,11 @@ public class ProductController {
     /**
      * id가 일치하는 상품을 찾아, 주어진 상품의 데이터로 수정하고 상품을 리턴합니다.
      *
+<<<<<<< HEAD
      * @param id 수정하려는 상품의 식별자
+=======
+     * @param id          수정하려는 상품의 식별자
+>>>>>>> feature/spes
      * @param productData 수정된 상품의 데이터
      * @return 수정된 상품
      */
