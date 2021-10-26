@@ -33,6 +33,4 @@ public class Product extends BaseTimeEntity {
     this.price = source.price;
     this.applied = source.applied;
   }
-
-
 }
