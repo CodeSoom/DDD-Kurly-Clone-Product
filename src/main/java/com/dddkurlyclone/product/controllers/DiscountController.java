@@ -25,7 +25,6 @@ public class DiscountController {
                   return clientResponse.bodyToMono(String.class);
                 });
 
-        return mono.block();
-    }
-
+    return mono.block();
+  }
 }
