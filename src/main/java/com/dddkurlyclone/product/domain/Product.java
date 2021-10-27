@@ -25,7 +25,7 @@ public class Product extends BaseTimeEntity {
     this.id = id;
     this.name = name;
     this.price = price;
-    applied = false;
+    this.applied = false;
   }
 
   public void changeWith(Product source) {
@@ -33,6 +33,4 @@ public class Product extends BaseTimeEntity {
     this.price = source.price;
     this.applied = source.applied;
   }
-
-
 }
