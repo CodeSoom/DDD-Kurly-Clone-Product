@@ -22,15 +22,19 @@ public class Product extends BaseTimeEntity {
 
     private Integer price;
 
-    @Builder
-    public Product(Long id, String name, Integer price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
+  private Boolean applied;
 
-    public void changeWith(Product source) {
-        this.name = source.name;
-        this.price = source.price;
-    }
+  @Builder
+  public Product(Long id, String name, Integer price) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.applied = false;
+  }
+
+  public void changeWith(Product source) {
+    this.name = source.name;
+    this.price = source.price;
+    this.applied = source.applied;
+  }
 }
