@@ -8,12 +8,10 @@ import com.github.dozermapper.core.Mapper;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class ProductService {
     private final Mapper mapper;
     private final ProductRepository productRepository;
@@ -31,15 +29,13 @@ public class ProductService {
         return findProduct(id);
     }
 
+    @Transactional
     public Product createProduct(ProductData productData) {
         Product product = mapper.map(productData, Product.class);
         return productRepository.save(product);
     }
 
-    private Product findProduct(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
-    }
-
+    @Transactional
     public Product updateProduct(Long id, ProductData productData) {
         Product source = findProduct(id);
 
@@ -48,8 +44,14 @@ public class ProductService {
         return source;
     }
 
+    @Transactional
     public void deleteProduct(Long id) {
         Product product = findProduct(id);
         productRepository.delete(product);
+    }
+
+    private Product findProduct(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
     }
 }
